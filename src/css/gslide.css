@@ -1,7 +1,5 @@
 .g-slide {
-    min-width: 450px;
-    max-width: 450px;
-    height: 400px;
+    height: 500px;
 }
 .g-slide img {
         width: 100%;
@@ -11,12 +9,21 @@
 .g-slide-wrapper {
     display: flex;
     align-items: center;
+    transition: all 1s ease-out;
+    height: 100%;
 }
 .g-slide-main {
     overflow: hidden;
+    height: 50%;
 }
 body {
-    margin-top: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 .g-slide-arrow {
     position: absolute;

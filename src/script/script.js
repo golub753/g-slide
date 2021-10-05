@@ -9,6 +9,7 @@ class Gslide {
     }
     init() {
         this.addClass();
+        this.addStyles();
         if (this.arrows) {
             this.addArrows();
             this.controlSlider();
@@ -21,32 +22,43 @@ class Gslide {
             item.classList.add('g-slide');
         });
     }
+    addStyles() {
+        this.slides.forEach(item => {
+            item.style.cssText = `flex: 0 0 ${Math.floor(100 / this.slidesToView)}%`;
+        });
+    }
     addArrows() {
-        const arrowPrev = document.createElement('div'),
-            arrowNext = document.createElement('div');
+        if (document.querySelector('.g-slide-arrow')) {
+            return true;
+        } else {
+            const arrowPrev = document.createElement('div'),
+                arrowNext = document.createElement('div');
 
-        arrowPrev.className = 'g-slide-arrow g-slide-arrow__prev';
-        arrowPrev.textContent = '<<';
-        arrowNext.className = 'g-slide-arrow g-slide-arrow__next';
-        arrowNext.textContent = '>>';
+            arrowPrev.className = 'g-slide-arrow g-slide-arrow__prev';
+            arrowPrev.textContent = '<<';
+            arrowNext.className = 'g-slide-arrow g-slide-arrow__next';
+            arrowNext.textContent = '>>';
 
-        this.main.insertAdjacentElement('afterend', arrowPrev);
-        this.main.insertAdjacentElement('afterend', arrowNext);
+            this.main.insertAdjacentElement('afterend', arrowPrev);
+            this.main.insertAdjacentElement('afterend', arrowNext);
+        }
     }
     nextSlide() {
         ++this.position;
         if (this.position > (this.slides.length - this.slidesToView)) {
             this.position = 0;
         }
-        console.log(this.position);
+        this.wrapper.style.cssText = `
+        transform: translateX(-${this.position * (Math.floor(100 / this.slidesToView))}%)`;
     }
 
     prevSlide() {
         --this.position;
-        if (this.position <= 0) {
+        if (this.position < 0) {
             this.position = this.slides.length - this.slidesToView;
         }
-        console.log(this.position);
+        this.wrapper.style.cssText = `
+        transform: translateX(-${this.position * (Math.floor(100 / this.slidesToView))}%)`;
     }
     controlSlider() {
         const btnLeft = document.querySelector('.g-slide-arrow__prev'),
