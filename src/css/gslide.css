@@ -1,0 +1,32 @@
+.g-slide {
+    min-width: 450px;
+    max-width: 450px;
+    height: 400px;
+}
+.g-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+}
+.g-slide-wrapper {
+    display: flex;
+    align-items: center;
+}
+.g-slide-main {
+    overflow: hidden;
+}
+body {
+    margin-top: 200px;
+}
+.g-slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.g-slide-arrow__prev {
+    left: -100px;
+}
+.g-slide-arrow__next {
+    right: -100px;
+}
